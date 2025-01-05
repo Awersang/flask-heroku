@@ -1,6 +1,6 @@
 steps:
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  args: ['app', 'deploy', 'app.yaml', '--quiet', '--region=us-central1']
+  args: ['app', 'deploy', 'app.yaml', '--quiet', '--region=europe-central2']
 logsBucket: gs://todo-test-bucket
 
   # gsutil mb -l europe-west1  gs://todo-test-bucket
