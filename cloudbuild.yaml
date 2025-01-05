@@ -4,3 +4,4 @@ steps:
 logsBucket: gs://[BUCKET_NAME]
 
   # gsutil mb -l europe-west1  gs://todo-test-bucket
+  # grant access to the bucket
