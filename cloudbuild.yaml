@@ -5,3 +5,4 @@ logsBucket: gs://todo-test-bucket
 
   # gsutil mb -l europe-west1  gs://todo-test-bucket
   # grant access to the bucket
+  # gcloud config set builds/region us-central1
