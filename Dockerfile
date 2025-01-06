@@ -28,15 +28,14 @@ ENV FLASK_RUN_HOST=0.0.0.0
 EXPOSE 8080
 
 # Run the application
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+CMD ["gunicorn", "-b", ":$PORT", "app:app"]
 
 
-'''
-docker build -t gcr.io/webgradient-01/flask-todo-app .
-gcloud builds submit --tag gcr.io/webgradient-01/flask-todo-app
-gcloud run deploy flask-todo-app \
-  --image gcr.io/webgradient-01/flask-todo-app \
-  --platform managed \
-  --region europe-central2 \
-  --allow-unauthenticated
-'''
+
+# docker build -t gcr.io/webgradient-01/flask-todo-app .
+# gcloud builds submit --tag gcr.io/webgradient-01/flask-todo-app
+# gcloud run deploy flask-todo-app \
+#   --image gcr.io/webgradient-01/flask-todo-app \
+#   --platform managed \
+#   --region europe-central2 \
+#   --allow-unauthenticated
