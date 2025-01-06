@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt requirements.txt
 
 # Install the dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code into the container
 COPY . .
@@ -25,7 +25,18 @@ ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
 # Expose the port that the app runs on
-EXPOSE 5000
+EXPOSE 8080
 
 # Run the application
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+
+
+'''
+docker build -t gcr.io/webgradient-01/flask-todo-app .
+gcloud builds submit --tag gcr.io/webgradient-01/flask-todo-app
+gcloud run deploy flask-todo-app \
+  --image gcr.io/webgradient-01/flask-todo-app \
+  --platform managed \
+  --region europe-central2 \
+  --allow-unauthenticated
+'''
