@@ -23,6 +23,7 @@ COPY . .
 # Set environment variables
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
+ENV PORT=8080
 
 # Expose the port that the app runs on
 EXPOSE 8080
