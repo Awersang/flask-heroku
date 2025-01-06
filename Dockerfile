@@ -1,15 +1,13 @@
-# Use the official Python image from the Docker Hub
-FROM python:3.11-slim
 
-# Set the working directory in the container
-# WORKDIR /app 
-# TODO: play with workdir
+# Use the official Python image from Docker Hub
+FROM python:3.11-slim
 
 # Install build dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     pkg-config \
-    libmariadb-dev
+    libmariadb-dev \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy the requirements file into the container
 COPY requirements.txt requirements.txt
@@ -22,14 +20,12 @@ COPY . .
 
 # Set environment variables
 ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
-ENV PORT=8080
 
 # Expose the port that the app runs on
 EXPOSE 8080
 
 # Run the application
-CMD ["gunicorn", "-b", ":$PORT", "app:app"]
+CMD ["gunicorn", "-b", ":8080", "app:app"]
 
 
 
@@ -40,3 +36,4 @@ CMD ["gunicorn", "-b", ":$PORT", "app:app"]
 #   --platform managed \
 #   --region europe-central2 \
 #   --allow-unauthenticated
+
